@@ -1,0 +1,57 @@
+<template>
+	<div class="sidebar-item">
+		<el-menu-item v-if="!hasChildren" :index="basePath">
+			<el-icon v-if="item.meta.icon">
+				<Icon :name="item.meta.icon" />
+			</el-icon>
+		    <span class="title">{{ item.meta.title }}</span>
+		</el-menu-item>
+		<el-sub-menu v-else :index="basePath" >
+		    <template #title>
+				<el-icon v-if="item.meta.icon">
+					<Icon :name="item.meta.icon" />
+				</el-icon>
+		        <span class="title">{{ item.meta.title }}</span>
+		    </template>
+		    <template v-for="route in item.children">
+		        <SidebarItem :item="route" :base-path="route.path" />
+		    </template>
+		</el-sub-menu>
+	</div>
+</template>
+
+<script setup>
+	import SidebarItem from './sidebar-item.vue'
+	const props = defineProps({
+	    item: {
+	        type: Object,
+	        required: true
+	    },
+	    basePath: {
+	        type: String,
+	        default: ''
+	    }
+	})
+	const hasChildren = computed(() => {
+		let flag = true
+		if (props.item.children) {
+			if (props.item.children.every(item => item.meta.sidebar === false)) {
+				flag = false
+			}
+		} else {
+			flag = false
+		}
+		return flag
+	})
+	onMounted(()=>{
+		console.log(props.basePath)
+	})
+</script>
+
+<style scoped lang="scss">
+	.el-menu-item.is-active {
+		background-color:var(--el-menu-hover-bg-color);
+		color:var(--el-color-primary);
+		font-weight: bold;
+	}
+</style>
