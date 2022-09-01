@@ -1,6 +1,10 @@
 <template>
 	<el-header class="topbar-container">
+		<!-- {{y}} -->
 		<div class="left-box">
+			<el-icon @click="settingsStore.toggleSidebarCollapse()">
+				<Icon :name="settingsStore.isCollapse?'ep:expand':'ep:fold'"></Icon>
+			</el-icon>
 			<el-breadcrumb>
 				<transition-group name="breadcrumb">
 					<el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="item.path"
@@ -48,6 +52,8 @@
 
 <script setup>
 	import useUserStore from '~/store/modules/user'
+	import useSettingsStore from '~/store/modules/settings'
+	const settingsStore = useSettingsStore()
 	const userStore = useUserStore()
 	const router = useRouter()
 	const route = useRoute()
@@ -68,7 +74,7 @@
 	const toggleDark = useToggle(isDark)
 	//全屏
 	const { isFullscreen,toggle } = useFullscreen()
-	
+	// const {x,y} = useWindowScroll()
 	function userCommand(command) {
 	    switch (command) {
 	        case 'setting':
@@ -91,17 +97,16 @@
 	.topbar-container {
 		--el-header-height: 50px;
 		width: inherit;
-		min-width: inherit;
-		position: fixed;
-		z-index: 999;
-		top: 0;
+		z-index: 98;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		height: var(--el-header-height);
 		background-color: var(--el-bg-color);
-		box-shadow: 0 10px 10px -10px var(--el-fill-color-light);
+		box-shadow: var(--el-box-shadow); 
 		.left-box {
+			display: flex;
+			align-items: center;
 			padding-right: 50px;
 			:deep(.el-breadcrumb) {
 				margin-left: 20px;
@@ -116,7 +121,7 @@
 						color: #97a8be;
 					}
 				}
-			}
+			} 
 		}
 		.tools {
 		    display: flex;

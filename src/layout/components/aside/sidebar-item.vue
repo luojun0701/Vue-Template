@@ -43,9 +43,6 @@
 		}
 		return flag
 	})
-	onMounted(()=>{
-		console.log(props.basePath)
-	})
 </script>
 
 <style scoped lang="scss">
@@ -53,5 +50,14 @@
 		background-color:var(--el-menu-hover-bg-color);
 		color:var(--el-color-primary);
 		font-weight: bold;
+	}
+	.el-menu--collapse .title{
+		opacity: 0;
+	}
+	.el-sub-menu:hover,.el-menu-item:hover{
+		.el-icon{
+			transition: all .3s;
+			transform: scale(1.3);
+		}
 	}
 </style>

@@ -7,7 +7,7 @@
 	        <el-main>
 				<router-view></router-view>
 			</el-main>
-	        <Footer />
+	        <!-- <Footer /> -->
 	      </el-container>
 	    </el-container>
 	  </div>
@@ -25,14 +25,11 @@
 		& .el-container{
 			height: 100%;
 			.main-container{
-				width:calc(100% - 220px);
-				min-width: 1080px;
 				height: 100%;
-				margin-left: 220px;
 				background-color: var(--el-bg-color-page);
-				.el-main{
-					margin-top: 50px;
-				}
+				// .el-main{
+				// 	margin-top: 50px; 
+				// }
 			}
 		}
 	}

@@ -1,0 +1,14 @@
+.flip-2-ver-right-1 {
+	animation: flip-2-ver-right-1 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@keyframes flip-2-ver-right-1 {
+	0% {
+		transform: translateX(0) rotateY(0);
+		transform-origin: 50% 100%;
+	}
+	100% {
+		transform: translateX(0%) rotateY(360deg);
+		transform-origin: 0% 50%; 
+	}
+} 

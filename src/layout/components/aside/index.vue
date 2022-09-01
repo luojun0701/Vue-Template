@@ -1,9 +1,9 @@
 <template>
-	<el-aside class="sidebar-container">
+	<el-aside class="sidebar-container" v-show="settingsStore.mode=='pc'">
 		<div class="logo">
-			VUE Admin
+			{{settingsStore.isCollapse?'Admin':'VUE Admin'}}
 		</div>
-		<el-menu :unique-opened="true" :default-active="$route.path" :router="true">
+		<el-menu class="cu-el-menu" :unique-opened="true" :default-active="$route.path" :router="true"  :collapse="settingsStore.isCollapse" >
 		    <template v-for="(route, index) in menuStore.allMenus">
 		       <SidebarItem :item="route" :basePath="route.path=='/'?'/index':route.path"></SidebarItem>
 		    </template>
@@ -14,19 +14,22 @@
 <script setup>
 	import SidebarItem from './sidebar-item.vue'
 	import useMenuStore from '~/store/modules/menu'
+	import useSettingsStore from '~/store/modules/settings'
+	
 	const menuStore = useMenuStore()
+	const settingsStore = useSettingsStore()
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="scss"> 
 	.sidebar-container{
-		position: fixed;
-		z-index: 888;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		width: 220px;
-		height: 100%;;
-		box-shadow:var(--el-box-shadow-light);
+		// position: fixed;
+		// top: 0;
+		// left: 0;
+		width: auto;
+		height: 100%;
+		z-index: 99;
+		background-color: var(--el-bg-color);
+		// box-shadow: var(--el-box-shadow); 
 		overflow-x: hidden;
 		overflow-y: auto;
 		overscroll-behavior: contain;
@@ -42,16 +45,16 @@
 			text-align: center;
 			line-height: 50px;
 			font-weight: bold;
-			position: fixed;
-			top: 0;
-			z-index: 999;
+			// position: fixed;
+			// top: 0;
+			// z-index: 98;
 			background-color: var(--el-bg-color);
 		}
-		.el-menu{
-			padding-top: 50px;
+		.cu-el-menu{
+			// padding-top: 50px;
 			border: none;
-			.el-menu-item{
-				width: 100%;
+			&:not(.el-menu--collapse) {
+			  width: 200px;
 			}
 		}
 	}

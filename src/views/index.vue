@@ -1,5 +1,7 @@
 <template>
-	 <el-card shadow="never"> 首页 </el-card>
+	 <el-card shadow="never"> <div class="" style="height: 1920px;">
+	 	
+	 </div> </el-card>
 </template>
 
 <script>
