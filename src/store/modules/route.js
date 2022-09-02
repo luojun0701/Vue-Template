@@ -79,6 +79,7 @@ const useRouteStore = defineStore(
         state: () => ({
             isGenerate: false,
             routes: [],
+			tabs:[],
             currentRemoveRoutes: []
         }),
         getters: {
@@ -105,6 +106,19 @@ const useRouteStore = defineStore(
                     resolve()
                 })
             },
+			//生成标签页数据
+			generateTbasData(route){
+				let tmpTabs=util.deepClone(this.tabs)
+				if(!tmpTabs.some(item=>item.name==route.path)){
+					//第一个不允许关闭
+					tmpTabs.push({
+						name:route.path,
+						label:route.meta.title,
+						closable:tmpTabs.length==0?false:true
+					})
+				}
+				this.tabs=tmpTabs
+			},
             // 记录 accessRoutes 路由，用于登出时删除路由
             setCurrentRemoveRoutes(routes) {
                 this.currentRemoveRoutes = routes

@@ -15,7 +15,6 @@
 	import SidebarItem from './sidebar-item.vue'
 	import useMenuStore from '~/store/modules/menu'
 	import useSettingsStore from '~/store/modules/settings'
-	
 	const menuStore = useMenuStore()
 	const settingsStore = useSettingsStore()
 </script>

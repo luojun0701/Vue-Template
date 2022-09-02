@@ -26,6 +26,7 @@ router.beforeEach(async(to, from, next) => {
                     replace: true
                 })
             } else {
+				await routeStore.generateTbasData(to)
             	next() 
             }
         } else {
