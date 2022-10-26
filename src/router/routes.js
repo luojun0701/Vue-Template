@@ -44,7 +44,7 @@ let asyncRoutes = [{
 	redirect: '/shop/index',
 	meta: {
 		title: '商户中心',
-		icon: 'ep:shop'
+		icon: 'ep:shop',
 	},
 	children: [{
 		path: '/shop/index',
@@ -52,7 +52,8 @@ let asyncRoutes = [{
 		component: () => import('~/views/shop/index.vue'),
 		meta: {
 			title: '商户列表',
-			auth:'admin'
+			auth:'admin',
+			
 		}
 	},{
 		path: '/shop/gl',
@@ -67,6 +68,7 @@ let asyncRoutes = [{
 			component: () => import('~/views/index.vue'),
 			meta: {
 				title: '新增商户',
+				hidden:true	
 			}
 		}]
 	}]

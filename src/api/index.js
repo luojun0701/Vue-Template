@@ -14,7 +14,6 @@ const useRequest = createFetch({
 		},
 		// 请求错误
 		onFetchError({data,error}) {
-			console.error(error)
 			data = undefined
 			return { data, error }
 		},

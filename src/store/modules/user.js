@@ -7,28 +7,31 @@ const useUserStore = defineStore(
     'user',
     {
         state: () => ({
-            permissions: []
+            permissions: [],
+			token:localStorage.getItem('token')
         }),
         getters: {
             isLogin: state => {
-                return true
+				let retn = false
+				if (state.token) {
+				    retn = true
+				}
+				return retn
             }
         },
         actions: {
             login(data) {
                 return new Promise((resolve, reject) => {
-                    
+					this.token='sssssssssss'
+                    localStorage.setItem('token','sssssssssssssss')
+					resolve()
                 })
             },
             logout() {
                 return new Promise(resolve => {
                     const routeStore = useRouteStore()
-                    localStorage.removeItem('account')
                     localStorage.removeItem('token')
-                    localStorage.removeItem('failure_time')
-                    this.account = ''
                     this.token = ''
-                    this.failure_time = ''
                     routeStore.removeRoutes()
                     resolve()
                 })

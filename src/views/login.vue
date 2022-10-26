@@ -66,12 +66,15 @@
 </template>
 
 <script setup>
+	import useUserStore from '~/store/modules/user'
+	const userStore = useUserStore()
+	const router=useRouter(),route=useRoute()
 	const loading=ref(false)
+	const redirect = ref(null)
 	const formAnimation=ref(false)
 	const formType=ref('login')
 	const loginRef=ref()
 	const loginForm=ref({})
-	
 	const loginRules = ref({
 	    account: [
 	        { required: true, trigger: 'blur', message: '请输入用户名' }
@@ -81,7 +84,10 @@
 	    ]
 	})
 	const login=(formEl)=>{
-		loading.value=true
+		// loading.value=true
+		userStore.login().then(res=>{
+			router.push(route.query.redirect ?? '/')
+		})
 	}
 	const switchContent=(type)=>{
 		formType.value=type
