@@ -5,7 +5,10 @@ const useMenuStore = defineStore(
 			// 侧边栏是否收起（用于记录 pc 模式下最后的状态）
 			collapseLastStatus: false,
 			isCollapse: false,
-			mode: 'pc'
+			mode: 'pc',
+			showNavTabs:false,
+			fullName:'萝卜桃后台系统',
+			abbreviation:'萝卜桃'
 		}),
 		actions: {
 			// 设置访问模式

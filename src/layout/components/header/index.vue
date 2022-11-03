@@ -2,6 +2,7 @@
 	<div class="cu-header">
 		<!-- 历史路由标签页 -->
 		<el-tabs
+		v-if="settingsStore.showNavTabs"
 		    v-model="tabsValue"
 		    type="card"
 			@tab-change="changeTab"
@@ -83,7 +84,7 @@
 		if (route.path != '/index')
 			breadcrumbList.push({
 				path: '/index',
-				title: '首页'
+				title: '仪表盘'
 			})
 		if (route.meta.breadcrumbNeste) {
 			breadcrumbList.push(...route.meta.breadcrumbNeste.filter(item => item.hide === false))
@@ -213,10 +214,10 @@
 		line-height:32px;
 	}
 	:deep().el-tabs__item.is-active{
-		background-color: #FFFFFF;
+		background-color: var(--el-bg-color);
 	}
 	.el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
-	  border-bottom-color: #FFFFFF;
+	  border-bottom-color: var(--el-bg-color);
 	}
 	:deep().el-tabs__header{
 		margin: 0;

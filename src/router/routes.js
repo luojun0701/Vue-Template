@@ -25,8 +25,8 @@ let asyncRoutes = [{
 		redirect: '/index',
 		component: Layout,
 		meta: {
-			title: '首页',
-			icon: 'ep:home-filled',
+			title: '仪表盘',
+			icon: 'ant-design:dashboard-filled',
 			breadcrumb:false
 		}, 
 		children: [{
@@ -34,45 +34,48 @@ let asyncRoutes = [{
 			name: 'index',
 			component: () => import('~/views/index.vue'),
 			meta: {
-				title: '首页',
+				title: '仪表盘',
 				sidebar:false
 			}
 		}]
 	},{
-	path: '/shop',
+	path: '/user',
 	component: Layout,
-	redirect: '/shop/index',
+	redirect: '/user/index',
 	meta: {
-		title: '商户中心',
-		icon: 'ep:shop',
+		title: '用户管理',
+		icon: 'bxs:user',
+		breadcrumb:false
 	},
 	children: [{
-		path: '/shop/index',
-		name: 'shopIndex',
-		component: () => import('~/views/shop/index.vue'),
+		path: '/user/index',
+		name: 'userIndex',
+		component: () => import('~/views/user/index.vue'),
 		meta: {
-			title: '商户列表',
+			title: '用户管理',
 			auth:'admin',
-			
+			sidebar:false
 		}
-	},{
-		path: '/shop/gl',
-		name: 'shopgl',
-		redirect: '/shop/shopgl/add',
+	}]
+},{
+		path: '/',
+		redirect: '/index',
+		component: Layout,
 		meta: {
-			title: '商户管理',
-		},
+			title: '文章发布',
+			icon: 'mdi:microsoft-dynamics-365',
+			breadcrumb:false
+		}, 
 		children: [{
-			path: '/shop/shopgl/add',
-			name: 'shopadd',
+			path: '/index',
+			name: 'index',
 			component: () => import('~/views/index.vue'),
 			meta: {
-				title: '新增商户',
-				hidden:true	
+				title: '文章发布',
+				sidebar:false
 			}
 		}]
 	}]
-}]
 
 export {
 	constantRoutes,

@@ -1,7 +1,7 @@
 <template>
 	<el-aside class="sidebar-container" v-show="settingsStore.mode=='pc'">
 		<div class="logo">
-			{{settingsStore.isCollapse?'Admin':'VUE Admin'}}
+			{{settingsStore.isCollapse?settingsStore.abbreviation:settingsStore.fullName}}
 		</div>
 		<el-menu class="cu-el-menu" :unique-opened="true" :default-active="$route.path" :router="true"  :collapse="settingsStore.isCollapse" >
 		    <template v-for="(route, index) in menuStore.allMenus">
