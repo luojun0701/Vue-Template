@@ -1,6 +1,6 @@
 <template>
 	<div class="sidebar-item">
-		<el-menu-item v-if="!hasChildren" :index="basePath">
+		<el-menu-item v-if="!hasChildren" :index="basePath" @click="onClick">
 			<el-icon v-if="item.meta.icon">
 				<Icon :name="item.meta.icon" />
 			</el-icon>
@@ -22,6 +22,7 @@
 
 <script setup>
 	import SidebarItem from './sidebar-item.vue'
+	const emits=defineEmits(['closeMenu'])
 	const props = defineProps({
 	    item: {
 	        type: Object,
@@ -32,6 +33,9 @@
 	        default: ''
 	    }
 	})
+	const onClick=()=>{
+		emits('closeMenu')
+	}
 	const hasChildren = computed(() => {
 		let flag = true
 		if (props.item.children) {

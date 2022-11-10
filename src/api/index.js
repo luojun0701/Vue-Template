@@ -9,7 +9,7 @@ const useRequest = createFetch({
 		},
 		// 在请求后处理数据，如：拦截错误、处理过期
 		afterFetch({data}) {
-			util.message(data.msg,data.code==200?'success':'error')
+			// util.message(data.msg,data.code==200?'success':'error')
 			return {data}
 		},
 		// 请求错误
@@ -36,11 +36,15 @@ function usePost(url, payload) {
  * @param query 请求参数
  */
 function useGet(url, query) {
-	const _url = unref(url)
-	const _query = unref(query)
-	const queryString = isObject(_query) ?stringifyQuery(_query) :_query || ''
-	const intact_url=`${_url}${queryString ? '?' : ''}${queryString}`
-	return useRequest(intact_url).json()
+	return new Promise((resolve)=>{
+		const _url = unref(url)
+		const _query = unref(query)
+		const queryString = isObject(_query) ?stringifyQuery(_query) :_query || ''
+		const intact_url=`${_url}${queryString ? '?' : ''}${queryString}`
+		useRequest(intact_url).then(data=>data.json()).then(({data})=>{
+			resolve(data.value)
+		})
+	}) 
 }
 export default {
 	usePost,useGet

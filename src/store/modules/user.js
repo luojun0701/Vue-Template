@@ -7,6 +7,8 @@ const useUserStore = defineStore(
     'user',
     {
         state: () => ({
+			nickName:'admin',
+			avatarUrl:'',
             permissions: [],
 			token:localStorage.getItem('token')
         }),

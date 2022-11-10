@@ -3,12 +3,25 @@
 		<div class="logo">
 			{{settingsStore.isCollapse?settingsStore.abbreviation:settingsStore.fullName}}
 		</div>
-		<el-menu class="cu-el-menu" :unique-opened="true" :default-active="$route.path" :router="true"  :collapse="settingsStore.isCollapse" >
+		<el-menu class="cu-el-menu" :unique-opened="true" :default-active="$route.path" :router="true" :show-close="false"  :collapse="settingsStore.isCollapse" >
 		    <template v-for="(route, index) in menuStore.allMenus">
 		       <SidebarItem :item="route" :basePath="route.path=='/'?'/index':route.path"></SidebarItem>
 		    </template>
 		</el-menu>
 	</el-aside>
+	<!-- mobile侧边栏 -->
+	 <el-drawer  ref="drawerRef" direction="ltr" :size="200" v-model="sidebarDrawer" :with-header="false" :before-close="handleClose">
+	    <el-aside class="sidebar-container">
+	    	<div class="logo">
+	    		{{settingsStore.fullName}}
+	    	</div>
+	    	<el-menu class="cu-el-menu" :unique-opened="true" :default-active="$route.path" :router="true">
+	    	    <template v-for="(route, index) in menuStore.allMenus">
+	    	       <SidebarItem :item="route" :basePath="route.path=='/'?'/index':route.path" @closeMenu="closeMenu"></SidebarItem>
+	    	    </template>
+	    	</el-menu>
+	    </el-aside>
+	</el-drawer>
 </template>
 
 <script setup>
@@ -17,13 +30,22 @@
 	import useSettingsStore from '~/store/modules/settings'
 	const menuStore = useMenuStore()
 	const settingsStore = useSettingsStore()
+	const sidebarDrawer=computed(()=>{
+		return settingsStore.mode=='mobile'&&settingsStore.isCollapse
+	})
+	const handleClose =(done)=>{
+		settingsStore.toggleSidebarCollapse()
+		done()
+	}
+	const drawerRef=ref(null)
+	const closeMenu=()=>{
+		settingsStore.toggleSidebarCollapse()
+		// drawerRef.value?.close()
+	}
 </script>
-
+ 
 <style scoped lang="scss"> 
 	.sidebar-container{
-		// position: fixed;
-		// top: 0;
-		// left: 0;
 		width: auto;
 		height: 100%;
 		z-index: 99;

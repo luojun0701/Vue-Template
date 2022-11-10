@@ -31,8 +31,8 @@
 					  </el-input>
 				    </el-form-item>
 				    <el-form-item class="cu-el-form-item">
-				      <el-button size="large" style="width: 214px;" :loading="loading" type="primary" @click="login(loginRef)">登录</el-button>
-				      <el-button size="large" style="width: 116px;" @click="switchContent('reset')">忘记密码？</el-button>
+				      <el-button size="large" style="min-width:180px;" :loading="loading" type="primary" @click="login(loginRef)">登录</el-button>
+				      <el-button link @click="switchContent('reset')">忘记密码？</el-button>
 				    </el-form-item>
 				</el-form>
 				<!-- ##忘记密码 -->
@@ -56,12 +56,12 @@
 					  </el-input>
 				    </el-form-item>
 				    <el-form-item class="cu-el-form-item">
-				      <el-button size="large" style="width: 214px;" :loading="loading" type="primary" @click="reset(resetRef)">确定</el-button>
-				      <el-button size="large" style="width: 116px;" @click="switchContent('login')">返回登录</el-button>
+				      <el-button size="large" style="min-width:180px;" :loading="loading" type="primary" @click="reset(resetRef)">确定</el-button>
+				      <el-button link @click="switchContent('login')">返回登录</el-button>
 				    </el-form-item>
-				</el-form>
+				</el-form> 
 			</div> 
-		</div>
+		</div> 
 	</div>
 </template>
 
@@ -128,6 +128,28 @@
 					margin: 50px 0;
 				}
 			}
+		}
+	}
+</style>
+<style scoped>
+	@media screen and (max-width:540px){
+		.login{
+			justify-content: center;
+		}
+		.login-content{
+			margin-right: 0;
+			width: 300px;
+			padding:0 15px;
+			border-radius:6px;
+		}
+		.login-content-header{
+			margin:20px 0 15px 0;
+		}
+		.title{
+			font-size: 18px;
+		}
+		.cu-el-form-item{
+			margin: 15px 0 !important;
 		}
 	}
 </style>

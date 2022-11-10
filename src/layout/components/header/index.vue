@@ -34,12 +34,12 @@
 			</div>
 			<div class="tools"> 
 			    <div class="buttons">
-			        <span class="item" @click="toggle">
+			        <span class="item" @click="toggle"  v-show="settingsStore.mode=='pc'">
 						<el-icon>
 							<Icon :name="!isFullscreen?'ep:full-screen':'bytesize:fullscreen-exit'"></Icon>
 						</el-icon> 
 			        </span>
-			       <span class="item" @click="toggleDark()">
+			       <span class="item" @click="changeThumb">
 			            <el-icon> 
 							<Icon :name="!isDark?'ep:sunny':'ep:moon'"></Icon>
 			            </el-icon>
@@ -94,6 +94,10 @@
 	//暗黑模式切换
 	const isDark = useDark()
 	const toggleDark = useToggle(isDark)
+	const changeThumb=()=>{
+		toggleDark()
+		settingsStore.changeDark(isDark)
+	}
 	//全屏
 	const { isFullscreen,toggle } = useFullscreen()
 	// const {x,y} = useWindowScroll()
@@ -108,7 +112,6 @@
 		let index=null
 		let tmpTabs=routeStore.tabs
 		let length=tmpTabs.length
-		console.log(tmpTabs)
 		tmpTabs.forEach((item,i)=>{
 			if(item.name==val)
 			index=i

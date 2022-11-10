@@ -1,7 +1,6 @@
 const Layout = () => import('~/layout/index.vue')
 // 固定路由（默认路由）
-let constantRoutes = [
-		{
+let constantRoutes = [{
 		path: '/login',
 		name: 'login',
 		component: () => import('~/views/login.vue'),
@@ -27,55 +26,57 @@ let asyncRoutes = [{
 		meta: {
 			title: '仪表盘',
 			icon: 'ant-design:dashboard-filled',
-			breadcrumb:false
-		}, 
+			breadcrumb: false
+		},
 		children: [{
 			path: '/index',
 			name: 'index',
 			component: () => import('~/views/index.vue'),
 			meta: {
 				title: '仪表盘',
-				sidebar:false
+				sidebar: false
 			}
 		}]
-	},{
-	path: '/user',
-	component: Layout,
-	redirect: '/user/index',
-	meta: {
-		title: '用户管理',
-		icon: 'bxs:user',
-		breadcrumb:false
-	},
-	children: [{
-		path: '/user/index',
-		name: 'userIndex',
-		component: () => import('~/views/user/index.vue'),
+	}, {
+		path: '/user',
+		component: Layout,
+		redirect: '/user',
 		meta: {
 			title: '用户管理',
-			auth:'admin',
-			sidebar:false
-		}
-	}]
-},{
-		path: '/',
-		redirect: '/index',
-		component: Layout,
-		meta: {
-			title: '文章发布',
-			icon: 'mdi:microsoft-dynamics-365',
-			breadcrumb:false
-		}, 
+			icon: 'heroicons:users-solid',
+			breadcrumb: false
+		},
 		children: [{
-			path: '/index',
-			name: 'index',
-			component: () => import('~/views/index.vue'),
+			path: '/user',
+			name: 'userIndex',
+			component: () => import('~/views/user/index.vue'),
 			meta: {
-				title: '文章发布',
-				sidebar:false
+				title: '用户管理',
+				auth: 'admin',
+				sidebar: false
 			}
 		}]
-	}]
+	}
+	// ,{
+	// 		path: '/',
+	// 		redirect: '/index',
+	// 		component: Layout,
+	// 		meta: {
+	// 			title: '文章发布',
+	// 			icon: 'mdi:microsoft-dynamics-365',
+	// 			breadcrumb:false
+	// 		}, 
+	// 		children: [{
+	// 			path: '/index',
+	// 			name: 'index',
+	// 			component: () => import('~/views/index.vue'),
+	// 			meta: {
+	// 				title: '文章发布',
+	// 				sidebar:false
+	// 			}
+	// 		}]
+	// 	}
+]
 
 export {
 	constantRoutes,

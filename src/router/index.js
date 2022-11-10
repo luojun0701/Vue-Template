@@ -15,7 +15,7 @@ router.beforeEach(async(to, from, next) => {
     const menuStore = useMenuStore()
     const routeStore = useRouteStore()
 	//设置标题
-	document.title=to.meta.title	
+	document.title='萝卜桃校园-'+to.meta.title	
     // 是否已登录
     if (userStore.isLogin) {
         // 是否已根据权限动态生成并挂载路由

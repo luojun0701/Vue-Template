@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@antv/g2plot": "^2.4.20",
     "@vueuse/core": "^9.1.0",
     "element-plus": "^2.2.12",
     "pinia": "^2.0.17",
